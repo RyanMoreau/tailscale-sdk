@@ -1,10 +1,14 @@
-import { AclDisplay } from "../organisms/acl-display.tsx";
-import styles from "./acl-page.module.css";
+import { PageTitle } from "../atoms/page-title.tsx";
+import { SimpleAclEditor } from "../organisms/simple-acl-editor.tsx";
 
 export function AclPage() {
 	return (
-		<div className={styles.page}>
-			<AclDisplay />
+		<div className="space-y-6">
+			<PageTitle
+				title="Access Control"
+				description="Define and adjust ACL policy quickly so incident-time changes take only a few clicks."
+			/>
+			<SimpleAclEditor showHeader={false} />
 		</div>
 	);
 }
