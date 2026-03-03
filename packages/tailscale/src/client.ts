@@ -6,6 +6,7 @@ import { DevicesResource } from "./resources/devices.ts";
 import { DnsResource } from "./resources/dns.ts";
 import { KeysResource } from "./resources/keys.ts";
 import { PolicyResource } from "./resources/policy.ts";
+import { UsersResource } from "./resources/users.ts";
 import { WebhooksResource } from "./resources/webhooks.ts";
 
 export interface TailscaleClientOptions {
@@ -32,6 +33,7 @@ export class TailscaleClient {
 	readonly keys: KeysResource;
 	readonly dns: DnsResource;
 	readonly policy: PolicyResource;
+	readonly users: UsersResource;
 	readonly webhooks: WebhooksResource;
 
 	constructor(opts: TailscaleClientOptions) {
@@ -50,6 +52,7 @@ export class TailscaleClient {
 		this.keys = new KeysResource(http, opts.tailnet);
 		this.dns = new DnsResource(http, opts.tailnet);
 		this.policy = new PolicyResource(http, opts.tailnet);
+		this.users = new UsersResource(http, opts.tailnet);
 		this.webhooks = new WebhooksResource(http, opts.tailnet);
 	}
 }

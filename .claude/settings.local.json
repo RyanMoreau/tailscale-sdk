@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bun run packages/dashboard/src/server.ts)",
+      "Bash(bun --hot src/server.ts)",
+      "Bash(curl -s http://localhost:3001/api/policy)",
+      "Bash(bun run build)",
+      "Bash(bun add tailwindcss-animate class-variance-authority clsx tailwind-merge @radix-ui/react-dialog @radix-ui/react-dropdown-menu @radix-ui/react-label @radix-ui/react-select @radix-ui/react-slot @radix-ui/react-switch @radix-ui/react-tabs @radix-ui/react-toast lucide-react)",
+      "Bash(bun add -d tailwindcss postcss autoprefixer)",
+      "Bash(bun run --filter dashboard dev)",
+      "Bash(bun add -d @tailwindcss/postcss)",
+      "Bash(curl -s http://localhost:5173/api/devices)",
+      "Bash(cat packages/dashboard/.env)",
+      "Bash(curl -X POST http://localhost:5173/api/policy/recipes/lockdown)",
+      "Bash(lsof -ti:3001)",
+      "Bash(xargs kill -9)",
+      "Bash(bun run src/server.ts)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

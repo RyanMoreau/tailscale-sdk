@@ -79,7 +79,7 @@ export class HttpClient {
 					let data: T;
 					if (response.status === 204 || response.headers.get("content-length") === "0") {
 						data = undefined as T;
-					} else if (contentType?.includes("text/")) {
+					} else if (contentType?.includes("text/") || contentType?.includes("application/hujson")) {
 						data = (await response.text()) as T;
 					} else {
 						data = (await response.json()) as T;

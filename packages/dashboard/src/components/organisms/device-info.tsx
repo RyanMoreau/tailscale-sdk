@@ -172,7 +172,7 @@ export function DeviceInfo({ deviceId }: DeviceInfoProps) {
 				<div className={styles.section}>
 					<h3 className={styles.sectionTitle}>Tags</h3>
 					<TagInput
-						tags={device.tags}
+						tags={device.tags || []}
 						onSave={(tags) => setTags.mutate({ id: deviceId, tags })}
 						isSaving={setTags.isPending}
 					/>

@@ -26,6 +26,12 @@ export type {
 } from "./policy.ts";
 
 export type {
+	User,
+	UserGetResponse,
+	UsersListResponse,
+} from "./users.ts";
+
+export type {
 	CreateWebhookRequest,
 	UpdateWebhookRequest,
 	Webhook,

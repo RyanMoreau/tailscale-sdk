@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export function usePolicy() {
 	return useQuery<string>({
@@ -25,6 +25,25 @@ export function useValidatePolicy() {
 				throw new Error(err.error || "Validation failed");
 			}
 			return res.json();
+		},
+	});
+}
+
+export function useApplyPolicyRecipe() {
+	const queryClient = useQueryClient();
+	return useMutation({
+		mutationFn: async (recipe: "lockdown" | "open-default" | "dev-to-staging") => {
+			const res = await fetch(`/api/policy/recipes/${recipe}`, {
+				method: "POST",
+			});
+			if (!res.ok) {
+				const err = await res.json();
+				throw new Error(err.error || "Failed to apply recipe");
+			}
+			return res.json() as Promise<{ ok: boolean; recipe: string; applied: string; aclCount: number }>;
+		},
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ["policy"] });
 		},
 	});
 }
