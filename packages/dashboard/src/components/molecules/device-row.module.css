@@ -1,0 +1,45 @@
+.row {
+	cursor: pointer;
+	transition: background var(--transition);
+}
+
+.row:hover {
+	background: var(--bg-tertiary);
+}
+
+.cell {
+	padding: 0.75rem;
+	border-bottom: 1px solid var(--border);
+	font-size: 0.875rem;
+}
+
+.nameCell {
+	display: flex;
+	align-items: center;
+	gap: 0.625rem;
+}
+
+.name {
+	font-weight: 500;
+}
+
+.os {
+	color: var(--text-secondary);
+}
+
+.ip {
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+	color: var(--text-secondary);
+}
+
+.lastSeen {
+	color: var(--text-muted);
+	font-size: 0.8125rem;
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem;
+}

@@ -1,0 +1,24 @@
+.th {
+	padding: 0.625rem 0.75rem;
+	text-align: left;
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+}
+
+.label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: var(--text-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	transition: color var(--transition);
+}
+
+.label:hover {
+	color: var(--text-secondary);
+}
+
+.active {
+	color: var(--text-primary);
+}
