@@ -111,8 +111,6 @@ export class HttpClient {
 
 				lastError = apiError;
 			} catch (error) {
-				clearTimeout(timeoutId);
-
 				if (error instanceof TailscaleApiError) {
 					if (!RETRYABLE_STATUS_CODES.has(error.status) || attempt === this.maxRetries) {
 						throw error;

@@ -18,5 +18,5 @@
 		"noUnusedParameters": false,
 		"noPropertyAccessFromIndexSignature": false
 	},
-	"references": [{ "path": "packages/tailscale" }]
+	"exclude": ["node_modules", "packages"]
 }

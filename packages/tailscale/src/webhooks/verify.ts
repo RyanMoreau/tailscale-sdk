@@ -84,6 +84,7 @@ function bufferToHex(buffer: ArrayBuffer): string {
 
 /**
  * Constant-time string comparison to prevent timing attacks.
+ * The length short-circuit is safe here: both inputs are SHA-256 hex digests (always 64 chars).
  */
 function timingSafeEqual(a: string, b: string): boolean {
 	if (a.length !== b.length) {
