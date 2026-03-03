@@ -1,0 +1,51 @@
+{
+	"name": "@ryanmoreau/tailscale",
+	"version": "0.1.0",
+	"description": "Zero-dependency TypeScript SDK for the Tailscale API v2",
+	"license": "MIT",
+	"author": "Ryan Moreau",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ryanmoreau/tailscale-sdk.git",
+		"directory": "packages/tailscale"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		},
+		"./webhooks": {
+			"import": {
+				"types": "./dist/webhooks/index.d.ts",
+				"default": "./dist/webhooks/index.js"
+			},
+			"require": {
+				"types": "./dist/webhooks/index.d.cts",
+				"default": "./dist/webhooks/index.cjs"
+			}
+		}
+	},
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": ["dist"],
+	"scripts": {
+		"build": "tsup",
+		"typecheck": "tsc --noEmit",
+		"test": "bun test"
+	},
+	"devDependencies": {
+		"tsup": "^8.3.0"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"keywords": ["tailscale", "vpn", "wireguard", "api", "sdk", "typescript"]
+}

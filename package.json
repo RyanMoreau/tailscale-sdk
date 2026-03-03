@@ -1,0 +1,18 @@
+{
+	"name": "tailscale-sdk",
+	"private": true,
+	"type": "module",
+	"workspaces": ["packages/*"],
+	"scripts": {
+		"build": "bun run --filter '@ryanmoreau/tailscale' build",
+		"typecheck": "bun run --filter '@ryanmoreau/tailscale' typecheck",
+		"lint": "bunx @biomejs/biome check .",
+		"lint:fix": "bunx @biomejs/biome check --write .",
+		"test": "bun run --filter '@ryanmoreau/tailscale' test"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/bun": "latest",
+		"typescript": "^5.7.0"
+	}
+}
