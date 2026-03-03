@@ -7,7 +7,7 @@ interface TagInputProps {
 	isSaving: boolean;
 }
 
-export function TagInput({ tags, onSave, isSaving }: TagInputProps) {
+export function TagInput({ tags = [], onSave, isSaving }: TagInputProps) {
 	const [editing, setEditing] = useState(false);
 	const [draft, setDraft] = useState("");
 
@@ -55,7 +55,7 @@ export function TagInput({ tags, onSave, isSaving }: TagInputProps) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.tags}>
-				{tags.length > 0 ? (
+				{tags && tags.length > 0 ? (
 					tags.map((tag) => (
 						<span key={tag} className={styles.tag}>
 							{tag}

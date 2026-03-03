@@ -7,6 +7,7 @@ import { DevicesPage } from "./components/templates/devices-page.tsx";
 import { DnsPage } from "./components/templates/dns-page.tsx";
 import { KeysPage } from "./components/templates/keys-page.tsx";
 import { OverviewPage } from "./components/templates/overview-page.tsx";
+import { UsersPage } from "./components/templates/users-page.tsx";
 
 export function App() {
 	return (
@@ -20,6 +21,7 @@ export function App() {
 							<Route path="/" element={<OverviewPage />} />
 							<Route path="/devices" element={<DevicesPage />} />
 							<Route path="/devices/:id" element={<DeviceDetailPage />} />
+							<Route path="/users" element={<UsersPage />} />
 							<Route path="/keys" element={<KeysPage />} />
 							<Route path="/dns" element={<DnsPage />} />
 							<Route path="/acl" element={<AclPage />} />

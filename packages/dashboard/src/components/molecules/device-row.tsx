@@ -38,12 +38,12 @@ export function DeviceRow({ device }: DeviceRowProps) {
 			</td>
 			<td className={styles.cell}>
 				<div className={styles.tags}>
-					{device.tags.slice(0, 3).map((tag) => (
+					{(device.tags || []).slice(0, 3).map((tag) => (
 						<Badge key={tag} variant="accent">
 							{tag.replace("tag:", "")}
 						</Badge>
 					))}
-					{device.tags.length > 3 && <Badge>+{device.tags.length - 3}</Badge>}
+					{(device.tags?.length || 0) > 3 && <Badge>+{device.tags!.length - 3}</Badge>}
 				</div>
 			</td>
 			<td className={styles.cell}>
