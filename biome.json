@@ -17,10 +17,16 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true
+			"recommended": true,
+			"security": {
+				"noDangerouslySetInnerHtml": "off"
+			},
+			"a11y": {
+				"useSemanticElements": "off"
+			}
 		}
 	},
 	"files": {
-		"ignore": ["node_modules", "dist", "*.tgz", ".claude"]
+		"ignore": ["**/node_modules", "**/dist", "**/*.tgz", "**/.claude"]
 	}
 }

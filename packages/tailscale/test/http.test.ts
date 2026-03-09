@@ -1,6 +1,6 @@
 import { describe, expect, it } from "bun:test";
 import type { AuthProvider } from "../src/auth/types.ts";
-import { TailscaleApiError, TailscaleError } from "../src/errors.ts";
+import { TailscaleApiError } from "../src/errors.ts";
 import { HttpClient } from "../src/http.ts";
 
 const mockAuth: AuthProvider = {

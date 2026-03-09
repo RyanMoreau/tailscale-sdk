@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
 import type { User } from "@tailscale/tailscale-typescript-sdk";
+import { useQuery } from "@tanstack/react-query";
 
 export function useUsers() {
 	return useQuery<{ users?: User[] }>({

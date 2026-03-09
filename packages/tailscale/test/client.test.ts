@@ -1,6 +1,5 @@
 import { describe, expect, it } from "bun:test";
 import { TailscaleClient } from "../src/client.ts";
-import { TailscaleError } from "../src/errors.ts";
 
 describe("TailscaleClient", () => {
 	it("creates a client with API key auth", () => {

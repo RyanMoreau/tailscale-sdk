@@ -1,4 +1,4 @@
-# @ryanmoreau/tailscale
+# @ryanmoreau/tailscale-sdk
 
 Zero-dependency TypeScript SDK for the [Tailscale API v2](https://tailscale.com/api).
 
@@ -9,8 +9,28 @@ Zero-dependency TypeScript SDK for the [Tailscale API v2](https://tailscale.com/
 
 ## Install
 
+### From GitHub Packages
+
+First, configure your `.npmrc` to use GitHub Packages for the `@ryanmoreau` scope:
+
 ```sh
-npm install @ryanmoreau/tailscale
+echo "@ryanmoreau:registry=https://npm.pkg.github.com" >> .npmrc
+```
+
+Then install the package:
+
+```sh
+npm install @ryanmoreau/tailscale-sdk
+# or
+bun add @ryanmoreau/tailscale-sdk
+# or
+pnpm add @ryanmoreau/tailscale-sdk
+```
+
+**Note:** You may need to authenticate with GitHub Packages. Create a personal access token with `read:packages` scope and run:
+
+```sh
+npm login --registry=https://npm.pkg.github.com --scope=@ryanmoreau
 ```
 
 ## Quick Start
@@ -18,7 +38,7 @@ npm install @ryanmoreau/tailscale
 ### API Key Authentication
 
 ```ts
-import { TailscaleClient } from "@ryanmoreau/tailscale";
+import { TailscaleClient } from "@ryanmoreau/tailscale-sdk";
 
 const client = new TailscaleClient({
   apiKey: process.env.TAILSCALE_API_KEY,
@@ -34,7 +54,7 @@ for (const device of devices) {
 ### OAuth Authentication
 
 ```ts
-import { TailscaleClient } from "@ryanmoreau/tailscale";
+import { TailscaleClient } from "@ryanmoreau/tailscale-sdk";
 
 const client = new TailscaleClient({
   oauthClientId: process.env.TAILSCALE_OAUTH_CLIENT_ID,
@@ -63,7 +83,7 @@ console.log(key.key);
 ### Webhook Signature Verification
 
 ```ts
-import { verifyWebhookSignature } from "@ryanmoreau/tailscale/webhooks";
+import { verifyWebhookSignature } from "@ryanmoreau/tailscale-sdk/webhooks";
 
 const isValid = await verifyWebhookSignature({
   payload: requestBody,
@@ -161,7 +181,7 @@ client.webhooks.rotateSecret(endpointId);
 ### Error Handling
 
 ```ts
-import { TailscaleApiError } from "@ryanmoreau/tailscale";
+import { TailscaleApiError } from "@ryanmoreau/tailscale-sdk";
 
 try {
   await client.devices.get("nonexistent");

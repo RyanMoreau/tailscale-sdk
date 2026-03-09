@@ -1,8 +1,8 @@
-import { User, UserCheck, UserX, Shield, Clock, Laptop } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { useUsers } from "@/hooks/use-users";
 import type { User as UserType } from "@tailscale/tailscale-typescript-sdk";
+import { Clock, Laptop, Shield, User, UserCheck, UserX } from "lucide-react";
 
 function formatDate(dateStr: string | undefined) {
 	if (!dateStr) return "Never";
@@ -23,26 +23,26 @@ function UserCard({ user }: { user: UserType }) {
 	const isConnected = user.currentlyConnected;
 	const isAdmin = user.tailnetRole === "admin";
 	const isTagged = user.type === "tagged";
-	
+
 	return (
 		<Card>
 			<CardContent className="pt-6">
 				<div className="flex items-start justify-between">
 					<div className="flex items-start gap-4">
-						<div className={`rounded-full p-2 ${
-							isTagged ? "bg-purple-100" : 
-							isAdmin ? "bg-blue-100" : "bg-gray-100"
-						}`}>
-							<User className={`h-5 w-5 ${
-								isTagged ? "text-purple-600" : 
-								isAdmin ? "text-blue-600" : "text-gray-600"
-							}`} />
+						<div
+							className={`rounded-full p-2 ${
+								isTagged ? "bg-purple-100" : isAdmin ? "bg-blue-100" : "bg-gray-100"
+							}`}
+						>
+							<User
+								className={`h-5 w-5 ${
+									isTagged ? "text-purple-600" : isAdmin ? "text-blue-600" : "text-gray-600"
+								}`}
+							/>
 						</div>
 						<div className="space-y-1">
 							<div className="flex items-center gap-2">
-								<h3 className="font-medium">
-									{user.displayName || user.loginName}
-								</h3>
+								<h3 className="font-medium">{user.displayName || user.loginName}</h3>
 								{isConnected ? (
 									<Badge variant="outline" className="text-xs">
 										<UserCheck className="mr-1 h-3 w-3" />
@@ -55,9 +55,7 @@ function UserCard({ user }: { user: UserType }) {
 									</Badge>
 								)}
 							</div>
-							<p className="text-sm text-muted-foreground">
-								{user.loginName}
-							</p>
+							<p className="text-sm text-muted-foreground">{user.loginName}</p>
 							<div className="flex flex-wrap gap-4 pt-2 text-xs text-muted-foreground">
 								{isAdmin && (
 									<span className="flex items-center gap-1">
@@ -89,10 +87,10 @@ export function UsersPage() {
 	const users = data?.users || [];
 
 	// Separate users by type
-	const members = users.filter(u => u.type !== "tagged");
-	const taggedDevices = users.filter(u => u.type === "tagged");
-	const onlineCount = users.filter(u => u.currentlyConnected).length;
-	const adminCount = users.filter(u => u.tailnetRole === "admin").length;
+	const members = users.filter((u) => u.type !== "tagged");
+	const taggedDevices = users.filter((u) => u.type === "tagged");
+	const onlineCount = users.filter((u) => u.currentlyConnected).length;
+	const adminCount = users.filter((u) => u.tailnetRole === "admin").length;
 	const totalDevices = users.reduce((sum, u) => sum + (u.deviceCount || 0), 0);
 
 	if (isLoading) {
@@ -178,7 +176,7 @@ export function UsersPage() {
 				<div className="space-y-4">
 					<h2 className="text-lg font-medium">Team Members</h2>
 					<div className="grid gap-4 md:grid-cols-2">
-						{members.map(user => (
+						{members.map((user) => (
 							<UserCard key={user.id} user={user} />
 						))}
 					</div>
@@ -190,7 +188,7 @@ export function UsersPage() {
 				<div className="space-y-4">
 					<h2 className="text-lg font-medium">Service Accounts</h2>
 					<div className="grid gap-4 md:grid-cols-2">
-						{taggedDevices.map(user => (
+						{taggedDevices.map((user) => (
 							<UserCard key={user.id} user={user} />
 						))}
 					</div>

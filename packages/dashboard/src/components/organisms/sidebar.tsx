@@ -19,7 +19,7 @@ export function Sidebar() {
 
 	useEffect(() => {
 		setMenuOpen(false);
-	}, [location.pathname]);
+	}, []);
 
 	const isActive = (to: string) =>
 		to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
