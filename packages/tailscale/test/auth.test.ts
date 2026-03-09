@@ -14,7 +14,7 @@ describe("ApiKeyAuthProvider", () => {
 describe("OAuthAuthProvider", () => {
 	it("fetches and caches an OAuth token", async () => {
 		let callCount = 0;
-		const mockFetch = async (input: string | URL | Request) => {
+		const mockFetch = async (_input: string | URL | Request) => {
 			callCount++;
 			return new Response(
 				JSON.stringify({

@@ -14,7 +14,9 @@
       "Bash(curl -X POST http://localhost:5173/api/policy/recipes/lockdown)",
       "Bash(lsof -ti:3001)",
       "Bash(xargs kill -9)",
-      "Bash(bun run src/server.ts)"
+      "Bash(bun run src/server.ts)",
+      "Bash(git rebase:*)",
+      "Bash(git -C /Users/ryanmoreau/Work/code/tailscale-sdk diff --name-only --diff-filter=U)"
     ],
     "deny": [],
     "ask": []

@@ -4,11 +4,11 @@
 	"type": "module",
 	"workspaces": ["packages/*"],
 	"scripts": {
-		"build": "bun run --filter '@ryanmoreau/tailscale' build",
-		"typecheck": "bun run --filter '@ryanmoreau/tailscale' typecheck",
+		"build": "bun run --filter '@ryanmoreau/tailscale-sdk' build",
+		"typecheck": "bun run --filter '@ryanmoreau/tailscale-sdk' typecheck",
 		"lint": "bunx @biomejs/biome check .",
 		"lint:fix": "bunx @biomejs/biome check --write .",
-		"test": "bun run --filter '@ryanmoreau/tailscale' test"
+		"test": "bun run --filter '@ryanmoreau/tailscale-sdk' test"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",

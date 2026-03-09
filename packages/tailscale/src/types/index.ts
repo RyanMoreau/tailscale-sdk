@@ -9,10 +9,8 @@ export type {
 	Distro,
 	SetDeviceKeyRequest,
 } from "./device.ts";
-
-export type { CreateKeyRequest, Key, KeyCapabilities } from "./key.ts";
-
 export type { DNSNameservers, DNSPreferences, DNSSearchPaths, SplitDNSConfig } from "./dns.ts";
+export type { CreateKeyRequest, Key, KeyCapabilities } from "./key.ts";
 
 export type {
 	ACLAutoApprovers,
@@ -24,13 +22,25 @@ export type {
 	PolicyGetResponse,
 	PolicyRawResponse,
 } from "./policy.ts";
-
+export type {
+	AutoApprovers,
+	CreateServiceRequest,
+	Service,
+	ServiceBackendHost,
+	ServiceEndpoint,
+	ServiceProtocol,
+	ServiceResource,
+	TailnetInfo,
+	TailnetMembership,
+	TailnetSettings,
+	TailnetUser,
+	UpdateServiceRequest,
+} from "./services.ts";
 export type {
 	User,
 	UserGetResponse,
 	UsersListResponse,
 } from "./users.ts";
-
 export type {
 	CreateWebhookRequest,
 	UpdateWebhookRequest,

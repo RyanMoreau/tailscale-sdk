@@ -1,5 +1,14 @@
 import { useCallback, useState } from "react";
-import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+	Bar,
+	BarChart,
+	CartesianGrid,
+	Cell,
+	ResponsiveContainer,
+	Tooltip,
+	XAxis,
+	YAxis,
+} from "recharts";
 import { type Key, useCreateKey, useDeleteKey, useKeys } from "../../hooks/use-keys.ts";
 import { expiryLevel } from "../../utils/time.ts";
 import { Banner } from "../atoms/banner.tsx";
@@ -109,14 +118,10 @@ export function KeyList() {
 	return (
 		<div className={styles.container}>
 			{createKey.error && (
-				<Banner variant="danger">
-					Failed to create key: {(createKey.error as Error).message}
-				</Banner>
+				<Banner variant="danger">Failed to create key: {(createKey.error as Error).message}</Banner>
 			)}
 			{deleteKey.error && (
-				<Banner variant="danger">
-					Failed to delete key: {(deleteKey.error as Error).message}
-				</Banner>
+				<Banner variant="danger">Failed to delete key: {(deleteKey.error as Error).message}</Banner>
 			)}
 			<div className={styles.toolbar}>
 				<div className={styles.horizonCard}>
@@ -177,7 +182,9 @@ export function KeyList() {
 									{horizon.map((point) => (
 										<Cell
 											key={point.label}
-											fill={point.label === "24h" ? "hsl(var(--destructive))" : "hsl(var(--primary))"}
+											fill={
+												point.label === "24h" ? "hsl(var(--destructive))" : "hsl(var(--primary))"
+											}
 										/>
 									))}
 								</Bar>

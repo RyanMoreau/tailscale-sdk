@@ -6,6 +6,8 @@ import { DevicesResource } from "./resources/devices.ts";
 import { DnsResource } from "./resources/dns.ts";
 import { KeysResource } from "./resources/keys.ts";
 import { PolicyResource } from "./resources/policy.ts";
+import { ServicesResource } from "./resources/services.ts";
+import { TailnetsResource } from "./resources/tailnets.ts";
 import { UsersResource } from "./resources/users.ts";
 import { WebhooksResource } from "./resources/webhooks.ts";
 
@@ -35,6 +37,8 @@ export class TailscaleClient {
 	readonly policy: PolicyResource;
 	readonly users: UsersResource;
 	readonly webhooks: WebhooksResource;
+	readonly services: ServicesResource;
+	readonly tailnets: TailnetsResource;
 
 	constructor(opts: TailscaleClientOptions) {
 		const auth = resolveAuth(opts);
@@ -54,6 +58,8 @@ export class TailscaleClient {
 		this.policy = new PolicyResource(http, opts.tailnet);
 		this.users = new UsersResource(http, opts.tailnet);
 		this.webhooks = new WebhooksResource(http, opts.tailnet);
+		this.services = new ServicesResource(http, opts.tailnet);
+		this.tailnets = new TailnetsResource(http, opts.tailnet);
 	}
 }
 

@@ -43,7 +43,7 @@ export function DeviceRow({ device }: DeviceRowProps) {
 							{tag.replace("tag:", "")}
 						</Badge>
 					))}
-					{(device.tags?.length || 0) > 3 && <Badge>+{device.tags!.length - 3}</Badge>}
+					{(device.tags?.length || 0) > 3 && <Badge>+{device.tags?.length - 3}</Badge>}
 				</div>
 			</td>
 			<td className={styles.cell}>

@@ -21,7 +21,7 @@
         "@radix-ui/react-switch": "^1.2.6",
         "@radix-ui/react-tabs": "^1.1.13",
         "@radix-ui/react-toast": "^1.2.15",
-        "@ryanmoreau/tailscale": "workspace:*",
+        "@ryanmoreau/tailscale-sdk": "workspace:*",
         "@tanstack/react-query": "^5.62.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -45,7 +45,7 @@
       },
     },
     "packages/tailscale": {
-      "name": "@ryanmoreau/tailscale",
+      "name": "@ryanmoreau/tailscale-sdk",
       "version": "0.1.0",
       "devDependencies": {
         "tsup": "^8.3.0",
@@ -305,7 +305,7 @@
 
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.59.0", "", { "os": "win32", "cpu": "x64" }, "sha512-2HRCml6OztYXyJXAvdDXPKcawukWY2GpR5/nxKp4iBgiO3wcoEGkAaqctIbZcNB6KlUQBIqt8VYkNSj2397EfA=="],
 
-    "@ryanmoreau/tailscale": ["@ryanmoreau/tailscale@workspace:packages/tailscale"],
+    "@ryanmoreau/tailscale-sdk": ["@ryanmoreau/tailscale-sdk@workspace:packages/tailscale"],
 
     "@standard-schema/spec": ["@standard-schema/spec@1.1.0", "", {}, "sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w=="],
 

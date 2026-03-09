@@ -140,13 +140,13 @@ route("POST", "/api/policy/validate", async (req) => {
 
 route("POST", "/api/policy/recipes/:name", async (_req, params) => {
 	const recipe = params.name as string;
-	
+
 	try {
 		// For now, always use mock implementation since real policy API requires proper hujson parsing
 		// Mock implementation for demo
 		let applied = "";
 		let aclCount = 1;
-		
+
 		if (recipe === "lockdown") {
 			applied = "Removed default open allow rule (demo mode)";
 			aclCount = 0;
@@ -159,11 +159,12 @@ route("POST", "/api/policy/recipes/:name", async (_req, params) => {
 		} else {
 			return json({ error: `Unknown recipe: ${recipe}` }, 400);
 		}
-		
+
 		return json({ ok: true, recipe, applied, aclCount });
-	} catch (error: any) {
+	} catch (error) {
 		console.error(`Recipe ${recipe} error:`, error);
-		return json({ error: error.message || "Failed to apply recipe" }, 400);
+		const message = error instanceof Error ? error.message : "Failed to apply recipe";
+		return json({ error: message }, 400);
 	}
 });
 
@@ -183,7 +184,7 @@ route("GET", "/api/users", async () => {
 					lastSeen: "2024-03-03T14:30:00Z",
 					currentlyConnected: true,
 					deviceCount: 3,
-					type: "member"
+					type: "member",
 				},
 				{
 					id: "user-2",
@@ -194,7 +195,7 @@ route("GET", "/api/users", async () => {
 					lastSeen: "2024-03-03T12:00:00Z",
 					currentlyConnected: true,
 					deviceCount: 2,
-					type: "member"
+					type: "member",
 				},
 				{
 					id: "user-3",
@@ -205,7 +206,7 @@ route("GET", "/api/users", async () => {
 					lastSeen: "2024-03-02T18:00:00Z",
 					currentlyConnected: false,
 					deviceCount: 1,
-					type: "member"
+					type: "member",
 				},
 				{
 					id: "tagged-devices",
@@ -216,9 +217,9 @@ route("GET", "/api/users", async () => {
 					lastSeen: "2024-03-03T14:00:00Z",
 					currentlyConnected: true,
 					deviceCount: 5,
-					type: "tagged"
-				}
-			]
+					type: "tagged",
+				},
+			],
 		});
 	}
 	const users = await ts.users.list();
@@ -228,7 +229,7 @@ route("GET", "/api/users", async () => {
 route("GET", "/api/users/:id", async (_req, params) => {
 	// Mock data for demo mode
 	if (process.env.TAILSCALE_TAILNET === "-" || !process.env.TAILSCALE_API_KEY) {
-		const mockUsers: Record<string, any> = {
+		const mockUsers: Record<string, unknown> = {
 			"user-1": {
 				id: "user-1",
 				loginName: "alice@example.com",
@@ -240,7 +241,7 @@ route("GET", "/api/users/:id", async (_req, params) => {
 				currentlyConnected: true,
 				deviceCount: 3,
 				type: "member",
-				devices: ["device-1", "device-2", "device-3"]
+				devices: ["device-1", "device-2", "device-3"],
 			},
 			"user-2": {
 				id: "user-2",
@@ -253,17 +254,17 @@ route("GET", "/api/users/:id", async (_req, params) => {
 				currentlyConnected: true,
 				deviceCount: 2,
 				type: "member",
-				devices: ["device-4", "device-5"]
-			}
+				devices: ["device-4", "device-5"],
+			},
 		};
-		
+
 		const user = mockUsers[params.id as string];
 		if (!user) {
 			return json({ error: "User not found" }, 404);
 		}
 		return json(user);
 	}
-	
+
 	const user = await ts.users.get(params.id as string);
 	return json(user);
 });
@@ -283,14 +284,12 @@ function matchRoute(
 	const url = new URL(req.url);
 	for (const r of routes) {
 		if (r.method !== req.method) continue;
-		
+
 		// Convert route path to regex pattern
-		const pattern = r.path
-			.replace(/:[^/]+/g, '([^/]+)')
-			.replace(/\//g, '\\/');
+		const pattern = r.path.replace(/:[^/]+/g, "([^/]+)").replace(/\//g, "\\/");
 		const regex = new RegExp(`^${pattern}$`);
 		const match = url.pathname.match(regex);
-		
+
 		if (match) {
 			// Extract params from the route
 			const params: Record<string, string> = {};

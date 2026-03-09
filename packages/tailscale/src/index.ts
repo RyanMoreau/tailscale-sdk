@@ -1,16 +1,20 @@
-export { TailscaleClient } from "./client.ts";
-export type { TailscaleClientOptions } from "./client.ts";
-
-export { TailscaleApiError, TailscaleError } from "./errors.ts";
-
-export type { AuthProvider } from "./auth/types.ts";
 export { ApiKeyAuthProvider } from "./auth/api-key.ts";
 export { OAuthAuthProvider } from "./auth/oauth.ts";
+export type { AuthProvider } from "./auth/types.ts";
+export type { TailscaleClientOptions } from "./client.ts";
+export { TailscaleClient } from "./client.ts";
+export { TailscaleApiError, TailscaleError } from "./errors.ts";
 
 export type {
+	ACLAutoApprovers,
+	ACLEntry,
+	ACLSSHRule,
+	ACLTest,
+	AutoApprovers,
 	ClientConnectivity,
 	ClientSupports,
 	CreateKeyRequest,
+	CreateServiceRequest,
 	CreateWebhookRequest,
 	DERPRegion,
 	Device,
@@ -22,16 +26,22 @@ export type {
 	ISODateString,
 	Key,
 	KeyCapabilities,
-	ACLAutoApprovers,
-	ACLEntry,
-	ACLSSHRule,
-	ACLTest,
 	NodeAttrGrant,
 	PolicyFile,
 	PolicyGetResponse,
 	PolicyRawResponse,
+	Service,
+	ServiceBackendHost,
+	ServiceEndpoint,
+	ServiceProtocol,
+	ServiceResource,
 	SetDeviceKeyRequest,
 	SplitDNSConfig,
+	TailnetInfo,
+	TailnetMembership,
+	TailnetSettings,
+	TailnetUser,
+	UpdateServiceRequest,
 	UpdateWebhookRequest,
 	User,
 	UserGetResponse,

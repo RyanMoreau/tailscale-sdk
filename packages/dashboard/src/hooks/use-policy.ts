@@ -40,7 +40,12 @@ export function useApplyPolicyRecipe() {
 				const err = await res.json();
 				throw new Error(err.error || "Failed to apply recipe");
 			}
-			return res.json() as Promise<{ ok: boolean; recipe: string; applied: string; aclCount: number }>;
+			return res.json() as Promise<{
+				ok: boolean;
+				recipe: string;
+				applied: string;
+				aclCount: number;
+			}>;
 		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({ queryKey: ["policy"] });

@@ -1,5 +1,5 @@
 {
-	"name": "@ryanmoreau/tailscale",
+	"name": "@ryanmoreau/tailscale-sdk",
 	"version": "0.1.0",
 	"description": "Zero-dependency TypeScript SDK for the Tailscale API v2",
 	"license": "MIT",
