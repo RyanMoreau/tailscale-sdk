@@ -123,13 +123,8 @@ route("GET", "/api/dns/preferences", async () => {
 // --- Policy ---
 
 route("GET", "/api/policy", async () => {
-	try {
-		const result = await ts.policy.getRaw();
-		return text(result.hujson);
-	} catch (error) {
-		console.error("Policy fetch error:", error);
-		throw error;
-	}
+	const result = await ts.policy.getRaw();
+	return text(result.hujson);
 });
 
 route("POST", "/api/policy/validate", async (req) => {
@@ -162,7 +157,6 @@ route("POST", "/api/policy/recipes/:name", async (_req, params) => {
 
 		return json({ ok: true, recipe, applied, aclCount });
 	} catch (error) {
-		console.error(`Recipe ${recipe} error:`, error);
 		const message = error instanceof Error ? error.message : "Failed to apply recipe";
 		return json({ error: message }, 400);
 	}
@@ -331,10 +325,10 @@ Bun.serve({
 		} catch (err) {
 			const message = err instanceof Error ? err.message : "Internal server error";
 			const status = (err as { status?: number }).status ?? 500;
-			console.error(`[${req.method}] ${new URL(req.url).pathname} →`, message);
+			console.error(`  ${req.method} ${new URL(req.url).pathname} → ${status} ${message}`);
 			return json({ error: message }, status);
 		}
 	},
 });
 
-console.log(`Dashboard API proxy running on http://localhost:${PORT}`);
+console.log(`\n  Tailscale Dashboard API → http://localhost:${PORT}\n`);

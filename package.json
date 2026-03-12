@@ -8,7 +8,8 @@
 		"typecheck": "bun run --filter '@ryanmoreau/tailscale-sdk' typecheck",
 		"lint": "bunx @biomejs/biome check .",
 		"lint:fix": "bunx @biomejs/biome check --write .",
-		"test": "bun run --filter '@ryanmoreau/tailscale-sdk' test"
+		"test": "bun run --filter '@ryanmoreau/tailscale-sdk' test",
+		"dev": "bun run --filter dashboard dev"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",

@@ -1,0 +1,2 @@
+# Intentionally empty — prevents npm from using .gitignore
+# The "files" field in package.json controls what gets published
