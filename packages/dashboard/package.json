@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "bun --hot src/server.ts & vite",
+		"dev": "bun run src/lib/preflight.ts && (bun --hot src/server.ts & vite)",
 		"dev:client": "vite",
 		"dev:server": "bun --hot src/server.ts",
 		"build": "vite build",

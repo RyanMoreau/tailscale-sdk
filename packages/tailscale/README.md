@@ -9,29 +9,17 @@ Zero-dependency TypeScript SDK for the [Tailscale API v2](https://tailscale.com/
 
 ## Install
 
-### From GitHub Packages
-
-First, configure your `.npmrc` to use GitHub Packages for the `@ryanmoreau` scope:
-
-```sh
-echo "@ryanmoreau:registry=https://npm.pkg.github.com" >> .npmrc
-```
-
-Then install the package:
+Not published to a registry — that's deliberate. It's zero-dependency
+TypeScript, so use it straight from source. Clone the monorepo and build:
 
 ```sh
-npm install @ryanmoreau/tailscale-sdk
-# or
-bun add @ryanmoreau/tailscale-sdk
-# or
-pnpm add @ryanmoreau/tailscale-sdk
+git clone https://github.com/RyanMoreau/tailscale-sdk
+cd tailscale-sdk && bun install
+bun run build   # packages/tailscale/dist — ESM + CJS + type declarations
 ```
 
-**Note:** You may need to authenticate with GitHub Packages. Create a personal access token with `read:packages` scope and run:
-
-```sh
-npm login --registry=https://npm.pkg.github.com --scope=@ryanmoreau
-```
+Then reference the built `dist/`, or drop `packages/tailscale/src` straight into
+your own project — there are no transitive dependencies to reconcile.
 
 ## Quick Start
 

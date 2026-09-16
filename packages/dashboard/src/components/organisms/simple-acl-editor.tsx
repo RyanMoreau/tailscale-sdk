@@ -118,6 +118,23 @@ export function SimpleAclEditor({ showHeader = true }: SimpleAclEditorProps) {
 	const [ruleDescription, setRuleDescription] = useState("");
 	const applyRecipe = useApplyPolicyRecipe();
 
+	// Applying a recipe rewrites the *live* tailnet policy — "Lock Down Network"
+	// can lock you out. Require a second click to confirm, matching the delete/
+	// revoke guards elsewhere. The armed state auto-disarms after a few seconds.
+	const [confirmingRecipe, setConfirmingRecipe] = useState<string | null>(null);
+
+	const handleRecipe = (recipe: string) => {
+		if (confirmingRecipe === recipe) {
+			applyRecipe.mutate(recipe);
+			setConfirmingRecipe(null);
+			return;
+		}
+		setConfirmingRecipe(recipe);
+		setTimeout(() => {
+			setConfirmingRecipe((current) => (current === recipe ? null : current));
+		}, 3000);
+	};
+
 	const isNetworkOpen = useMemo(
 		() =>
 			rules.some(
@@ -359,29 +376,35 @@ export function SimpleAclEditor({ showHeader = true }: SimpleAclEditorProps) {
 								<Button
 									variant="destructive"
 									className="justify-start"
-									onClick={() => applyRecipe.mutate("lockdown")}
+									onClick={() => handleRecipe("lockdown")}
 									disabled={applyRecipe.isPending}
 								>
 									<ShieldAlert className="mr-2 h-4 w-4" />
-									Recipe: Lock Down Network
+									{confirmingRecipe === "lockdown"
+										? "Rewrites your live policy — confirm?"
+										: "Recipe: Lock Down Network"}
 								</Button>
 								<Button
 									variant="secondary"
 									className="justify-start"
-									onClick={() => applyRecipe.mutate("open-default")}
+									onClick={() => handleRecipe("open-default")}
 									disabled={applyRecipe.isPending}
 								>
 									<Unlock className="mr-2 h-4 w-4" />
-									Recipe: Restore Open Default
+									{confirmingRecipe === "open-default"
+										? "Apply to live tailnet — confirm?"
+										: "Recipe: Restore Open Default"}
 								</Button>
 								<Button
 									variant="outline"
 									className="justify-start"
-									onClick={() => applyRecipe.mutate("dev-to-staging")}
+									onClick={() => handleRecipe("dev-to-staging")}
 									disabled={applyRecipe.isPending}
 								>
 									<ArrowRight className="mr-2 h-4 w-4" />
-									Recipe: Dev to Staging Access
+									{confirmingRecipe === "dev-to-staging"
+										? "Apply to live tailnet — confirm?"
+										: "Recipe: Dev to Staging Access"}
 								</Button>
 							</CardContent>
 						</Card>

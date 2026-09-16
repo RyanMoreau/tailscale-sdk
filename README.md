@@ -7,25 +7,20 @@ Zero-dependency TypeScript SDK for the [Tailscale API v2](https://tailscale.com/
 - [`@ryanmoreau/tailscale-sdk`](./packages/tailscale) - TypeScript SDK for Tailscale API
 - [`dashboard`](./packages/dashboard) - Example dashboard application (run locally)
 
-## Installation
+## Getting Started
 
-### From GitHub Packages
-
-Configure your `.npmrc` to use GitHub Packages:
+No registry, no tokens — clone and run:
 
 ```sh
-echo "@ryanmoreau:registry=https://npm.pkg.github.com" >> .npmrc
+git clone https://github.com/RyanMoreau/tailscale-sdk
+cd tailscale-sdk
+bun install
+bun run build   # compiles the SDK to dist/ — the dashboard imports it
 ```
 
-Install the SDK:
-
-```sh
-npm install @ryanmoreau/tailscale-sdk
-# or
-bun add @ryanmoreau/tailscale-sdk
-```
-
-**Authentication:** For private packages, you'll need to authenticate with GitHub Packages. Create a personal access token with `read:packages` scope.
+The SDK lives in [`packages/tailscale`](./packages/tailscale) with zero runtime
+dependencies, so you can use it straight from the workspace, build it to a
+portable `dist/`, or vendor the source into your own project.
 
 ## Quick Start
 
@@ -51,8 +46,10 @@ The included React dashboard demonstrates how to use the SDK with [TanStack Quer
 
 ```sh
 bun install
+bun run build   # build the SDK first — the dashboard imports it
 cp packages/dashboard/.env.sample packages/dashboard/.env
-# Edit .env with your Tailscale API key
+# Edit .env: set TAILSCALE_API_KEY (admin console → Settings → Keys)
+#            and TAILSCALE_TAILNET (or "-" for the default tailnet)
 bun run dev
 ```
 
@@ -112,15 +109,19 @@ bun test
 bun run lint
 ```
 
-## Publishing
+## Using the SDK in your own project
 
-Packages are automatically published to GitHub Packages when a new release is created.
+There's no published package — that's deliberate. The SDK is zero-dependency
+TypeScript, so the simplest paths are to build it and point at the output, or
+just vendor the source:
 
-To publish manually:
+```sh
+cd packages/tailscale
+bun run build   # -> dist/ (ESM + CJS + type declarations)
+```
 
-1. Update the version in `packages/tailscale/package.json`
-2. Create a new GitHub release
-3. The GitHub Action will automatically build and publish the package
+Reference the built `dist/`, or drop `packages/tailscale/src` straight into your
+own codebase — there are no transitive dependencies to reconcile.
 
 ## License
 

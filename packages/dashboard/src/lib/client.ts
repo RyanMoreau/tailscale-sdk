@@ -1,15 +1,13 @@
 import { TailscaleClient } from "@ryanmoreau/tailscale-sdk";
+import { checkEnv } from "./preflight.ts";
 
-const apiKey = process.env.TAILSCALE_API_KEY;
-const tailnet = process.env.TAILSCALE_TAILNET;
+// Belt-and-suspenders for `dev:server` (the dev script already preflights). The
+// SDK import above is what fails first if dist/ is missing — checkBuilt() in the
+// preflight gives that its own clear message before the server ever starts.
+checkEnv();
 
-if (!apiKey) {
-	throw new Error("TAILSCALE_API_KEY environment variable is required");
-}
-
-if (!tailnet) {
-	throw new Error("TAILSCALE_TAILNET environment variable is required");
-}
+const apiKey = process.env.TAILSCALE_API_KEY as string;
+const tailnet = process.env.TAILSCALE_TAILNET as string;
 
 const isPlaceholderKey =
 	apiKey === "tskey-api-placeholder" || apiKey.startsWith("tskey-api-ABCDEF");
