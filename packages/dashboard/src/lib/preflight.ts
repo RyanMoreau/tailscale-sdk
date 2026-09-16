@@ -23,8 +23,7 @@ export function checkBuilt(): void {
 	if (!existsSync(sdkDist)) {
 		fail(
 			"Tailscale dashboard can't start — the SDK isn't built.",
-			`${DIM}  The dashboard imports @ryanmoreau/tailscale-sdk from its dist/ output.${RESET}\n\n` +
-				"    bun run build   # from the repo root",
+			`${DIM}  The dashboard imports @ryanmoreau/tailscale-sdk from its dist/ output.${RESET}\n\n    bun run build   # from the repo root`,
 		);
 	}
 }
@@ -37,11 +36,7 @@ export function checkEnv(): void {
 	if (missing.length === 0) return;
 	fail(
 		`Tailscale dashboard can't start — missing ${missing.join(" and ")}.`,
-		`${DIM}  Set your credentials in packages/dashboard/.env:${RESET}\n\n` +
-			"    cp packages/dashboard/.env.sample packages/dashboard/.env\n\n" +
-			`${DIM}  then edit it:${RESET}\n\n` +
-			`    ${BOLD}TAILSCALE_API_KEY${RESET}=tskey-api-...   ${DIM}# admin console → Settings → Keys${RESET}\n` +
-			`    ${BOLD}TAILSCALE_TAILNET${RESET}=your-tailnet    ${DIM}# or "-" for the default tailnet${RESET}`,
+		`${DIM}  Set your credentials in packages/dashboard/.env:${RESET}\n\n    cp packages/dashboard/.env.sample packages/dashboard/.env\n\n${DIM}  then edit it:${RESET}\n\n    ${BOLD}TAILSCALE_API_KEY${RESET}=tskey-api-...   ${DIM}# admin console → Settings → Keys${RESET}\n    ${BOLD}TAILSCALE_TAILNET${RESET}=your-tailnet    ${DIM}# or "-" for the default tailnet${RESET}`,
 	);
 }
 
